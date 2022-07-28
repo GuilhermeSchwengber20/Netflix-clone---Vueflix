@@ -5,26 +5,26 @@
             <div v-show="showLoading" id="LoadingMovie">
                 <Spinner></Spinner>
             </div>
-            <carousel
+            <Carousel
             :per-page="2"
             :navigate-to="1"
             :mouse-drag="true"
             :paginationEnabled="false"
             :navigationEnabled="true"
             :navigationClickTargetSize="3">
-                <slide v-for="movie in movies" :key="movie.imdbID + Math.random()" id="movieDiv">
+                <Slide v-for="movie in movies" :key="movie.imdbID + Math.random()" id="movieDiv">
                 <div @click="details(movie.imdbID)">
                     <img :src="movie.Poster" loading="lazy" id="imagemPosterSlider" @click="details(movie)">
                 </div>
                 </slide>
-            </carousel>
+            </Carousel>
         </div>
     </div>
 </template>
 <script>
 import {Movies} from "../services/api";
 import Spinner from "./Spinner.vue"
-import { Carousel, Slide } from 'vue-carousel';
+import { Carousel, Slide } from "vue-carousel";
 
 
 export default{
@@ -46,9 +46,9 @@ export default{
     },
 
     methods:{
-        details(_id){
-            console.log(_id);
-            this.$router.push({name: "Detail", params: {id: _id} });    
+        details(id){
+            console.log(id);
+            this.$router.push({name: "DetailVue", params: {id: id.imdbID} });    
         },
         async getMovieDetail(){
             this.showLoading = true;
