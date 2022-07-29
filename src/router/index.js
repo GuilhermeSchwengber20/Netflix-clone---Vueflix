@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Preloader from '../pages/Preloader.vue'
 import Main from '../pages/Main.vue'
 import Detail from '../pages/Detail.vue'
+import MyList from '../pages/MyList.vue'
 
 
 Vue.use(VueRouter)
@@ -23,6 +24,11 @@ const routes = [
     path:'/Detail/:id',
     name: 'DetailVue',
     component: Detail
+  },
+  {
+    path:'/MyList',
+    name: 'MyListVue',
+    component: MyList
   }
 ]
 

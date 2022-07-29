@@ -1,7 +1,7 @@
 <template>
     <div class="page-container">
         <div class="header-container">
-            <img class="logoHeader" :src="image">
+            <img class="logoHeader" :src="image" @click="navigateMain">
             <nav role="navigation" class="nav">
                 <ul class="navegar">
                     <li class="nav-item">
@@ -16,7 +16,7 @@
                     <li class="nav-item">
                         <a>Mais recentes</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" @click="navigateMyList">
                         <a>Minha Lista</a>
                     </li>
                 </ul>
@@ -37,6 +37,14 @@ export default{
             image,
         }
     },
+    methods:{
+        navigateMyList(){
+            this.$router.push({ name: "MyListVue"})
+        },
+        navigateMain(){
+            this.$router.push({name: "MainVue"})
+        }
+    }
 }
 </script>
 <style scoped>

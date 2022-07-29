@@ -1,0 +1,65 @@
+<template>
+    <div>
+        <div class="containerMyList">
+            <div class="myListContent">
+                <div  v-for="movie in this.$store.state.list" :key="movie.imdbID" id="movieFav">
+                    <div class="posterBox">
+                        <img :src="movie.Poster" id="img">
+                    </div>
+                    <div class="buttons">
+                        <button id="marcarAssistido" title="Marcar Como Assistido" @click="markAsWatched(movie)"> 
+                            Marcar Como Assistido
+                        </button>
+                        <button id="removerLista" title="">
+                            Remover da Minha Lista
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</template>
+<script>
+export default{
+    name: "MyListVue"
+}
+
+</script>
+<style>
+.containerMyList{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.myListContent{
+    margin-top: 80px;
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    height: 100%;
+    border: 1px solid red;
+}
+#movieFav{
+    margin-left: 30px;
+}
+#img{
+    height: 300px;
+    width: 300px;
+}
+.buttons{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+}
+button{
+    height: 50px;
+    background-color: transparent;
+}
+</style>

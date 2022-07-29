@@ -157,7 +157,7 @@ export default{
             }
         },
         addToMyList() {
-            this.$store.dispatch("addToMyList", this.movie);
+            this.$store.dispatch("adicionarAlista", this.movie);
         },
         // showToast() {
         //     this.$toast.open({
