@@ -15,10 +15,11 @@ export default new Vuex.Store({
     mutations:{
         addToMyList(state, movie){
             console.log(state);
-            let existMovie = state.list.find(current => current.imdbID == movie.imdbID);
+            console.log(movie);
+            let existMovie = state.list.find(current => current ? current.imdbID : undefined == movie.imdbID);
             console.log(existMovie);
             if(!existMovie){
-                return state.list.push(movie)
+                state.list.push(movie);
             }
             this.commit("saveData");
         },

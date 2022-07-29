@@ -7,8 +7,8 @@
                     <Spinner />
                 </div>
             </div>
-            <div class="movieDetail">
-                <div class="movieTitle" style="text-align: center; ">
+            <div class="movieHeader">
+                <div class="movieTitle">
                     <h1>{{movie.Title}}</h1>
                 </div>
                 <div id="iconsContainer">
@@ -16,11 +16,10 @@
 
                     </div>
                 </div>
-                <div id="movieImage">
-                    <div class="image">
-                        <img :src="movie.Poster">
-                    </div>
-                </div>
+            </div>
+            <div class="videoContainer">
+                <p>Assista Ao Trailer</p>
+                <youtube :video-id="this.trailerID" ref="youtube"></youtube>
             </div>
             <div class="descriptionsContainer" style="margin-right: 10px;">
 
@@ -129,6 +128,7 @@
 <script>
 
 import { Movies } from "@/services/api";
+import { Trailer } from "@/services/trailer"
 import Spinner from "../components/Spinner.vue"
 
 export default{
@@ -137,7 +137,7 @@ export default{
         return{
             movie:[],
             showLoading: true,
-            trailerID: ""
+            trailerID: "",
         }
     },
     components:{
@@ -149,7 +149,9 @@ export default{
             try {
                 const {data} = await Movies(`i=${this.$route.params.id}`).get();
                 this.movie = data;
-
+                const responseTrailer = await Trailer(`${this.movie.Title}`).get();
+                console.log(responseTrailer);
+                this.trailerID = responseTrailer.data.items[0].id.videoId;
             } catch (error) {
                 console.log(error)
             }finally{
@@ -172,6 +174,7 @@ export default{
     },
     mounted(){
         this.getMovieDetail();
+        console.log(this.trailerID);
     }
 }
 </script>
@@ -184,57 +187,15 @@ export default{
 }
 
 .detail{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    align-content: center;
     width: 100%;
-    height: 100%;
-}
-
-.movieDetail{
-    height: 100%;
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 550px;
-    align-items: center;
     justify-content: center;
-}
-.descriptionsContainer{
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    width: 100%;
-    height: 65vh;
-}
-
-.containerMovie .containerBox{
-    display: flex;
-    width: 600px;
-    border: 1px solid red;
-    flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    padding: 5px;
-    margin-top: 10px;
+    flex-direction: column;
 }
 
-
-.button button{
-    width: 600px;
-    margin-top: 20px;
-    padding: 10px;
-    font-size: 1.2em;
-    background-color: transparent;
-    border-radius: 10px;
-    border: 1px solid red;
+.videoContainer{
+    align-items: flex-end;
 }
-
-.button button:hover{
-    transition: 0.5s;
-    background-color: red;
-}
-
 
 </style>

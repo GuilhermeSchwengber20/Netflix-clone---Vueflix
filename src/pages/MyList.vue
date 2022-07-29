@@ -41,16 +41,10 @@ export default{
             window.location.reload();
 
         },
-        checkIfWatched() {
-            this.$store.state.movieWatched.map(current => {
-                this.movies.push(current.imdbID);
-            })
-        },
-
 
     },
     mounted(){
-        this.checkIfWatched();
+
     }
 }
 
