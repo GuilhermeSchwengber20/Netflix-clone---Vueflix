@@ -7,10 +7,13 @@
                         <img :src="movie.Poster" id="img">
                     </div>
                     <div class="buttons">
-                        <button id="marcarAssistido" title="Marcar Como Assistido" @click="markAsWatched(movie)"> 
+                        <button id="removerAssistido" v-if="movies.includes(movie.imdbID)" @click="removeWatched(movie)">
+                            Remover Assistido
+                        </button>
+                        <button id="marcarAssistido" title="Marcar Como Assistido" @click="markAsWatched(movie), checkIfWatched()" v-else> 
                             Marcar Como Assistido
                         </button>
-                        <button id="removerLista" title="">
+                        <button id="removerLista" title="" @click="$store.commit('removeData', movie)">
                             Remover da Minha Lista
                         </button>
                     </div>
@@ -23,7 +26,32 @@
 </template>
 <script>
 export default{
-    name: "MyListVue"
+    name: "MyListVue",
+    data(){
+        return{
+            movies: []
+        }
+    },
+    methods:{
+        markAsWatched(movie){
+            this.$store.commit("markAsWatched", movie);
+        },
+        removeWatched(movie){
+            this.$store.commit("removeWatched", movie);
+            window.location.reload();
+
+        },
+        checkIfWatched() {
+            this.$store.state.movieWatched.map(current => {
+                this.movies.push(current.imdbID);
+            })
+        },
+
+
+    },
+    mounted(){
+        this.checkIfWatched();
+    }
 }
 
 </script>
@@ -41,7 +69,6 @@ export default{
     flex-direction: row;
     width: 90%;
     height: 100%;
-    border: 1px solid red;
 }
 #movieFav{
     margin-left: 30px;

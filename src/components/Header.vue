@@ -4,7 +4,7 @@
             <img class="logoHeader" :src="image" @click="navigateMain">
             <nav role="navigation" class="nav">
                 <ul class="navegar">
-                    <li class="nav-item">
+                    <li class="nav-item" @click="navigateMain">
                         <a>Inicio</a>
                     </li>
                     <li class="nav-item">

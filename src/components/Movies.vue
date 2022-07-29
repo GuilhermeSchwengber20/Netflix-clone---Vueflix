@@ -6,17 +6,17 @@
                 <Spinner></Spinner>
             </div>
             <Carousel
-            :per-page="2"
-            :navigate-to="1"
+            :per-page="4"
+            :navigate-to="0"
             :mouse-drag="true"
             :paginationEnabled="false"
             :navigationEnabled="true"
-            :navigationClickTargetSize="3">
+            :navigationClickTargetSize="9">
                 <Slide v-for="movie in movies" :key="movie.imdbID + Math.random()" id="movieDiv">
                 <div @click="details(movie.imdbID)">
                     <img :src="movie.Poster" loading="lazy" id="imagemPosterSlider" @click="details(movie)">
                 </div>
-                </slide>
+                </Slide>
             </Carousel>
         </div>
     </div>
@@ -113,6 +113,7 @@ export default{
 #imagemPosterSlider{
     border-radius: 15px;
     width: 200px;
+    height: 300px ;
     transition: 0.5s;
     object-fit: contain;
     height: 300px;
@@ -123,5 +124,15 @@ export default{
 #imagemPosterSlider:hover{
     transform: scale(1.2);
     cursor: pointer;
+
+}
+.VueCarousel-navigation{
+    position: absolute !important;
+    left: 0;
+
+}
+.VueCarousel-navigation-button[data-v-453ad8cd]{
+  color: #000 !important;
+  outline: none !important;
 }
 </style>
