@@ -18,11 +18,24 @@
                 </div>
             </div>
             <div class="videoContainer">
-                <p>Assista Ao Trailer</p>
+                <div clss="trailerItens" style="display: flex; flex-direction: row; gap: 5px; align-items: center;">
+                    <div>
+                        <font-awesome-icon :icon="['fa', 'ticket']" class="icon alt"></font-awesome-icon>
+                    </div>
+                    <div>
+                        <p>Assista Ao Trailer</p>
+                    </div>
+                </div>
                 <youtube :video-id="this.trailerID" ref="youtube"></youtube>
             </div>
-            <div class="descriptionsContainer" style="margin-right: 10px;">
-
+            <div class="descriptionsContainer">
+                <div class="containerMovie">
+                    <div class="containerBox">
+                        <div class="synopse">
+                            <p>{{movie.Plot}}</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="containerMovie">
                     <div class="containerBox">
                         <div class="duracao">
@@ -83,44 +96,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="containerMovie">
-                    <div class="containerBox">
-                        <div class="synopse">
-                            <p>{{movie.Plot}}</p>
-                        </div>
-                    </div>
-                </div>
                 <div class="button">
-                    <button @click="addToMyList">
+                    <button @click="addToMyList" class="addButon">
                         Adicionar A Minha Lista
                     </button>
                 </div>
-                <!-- <div id="descriptions">
-                    <p>
-                        Duração
-                        <span>{{ movie.Runtime }}</span>
-                    </p>
-                    <p>
-                        Gênero
-                        <span>{{ movie.Genre }}</span>
-                    </p>
-                    <p>
-                        Diretor
-                        <span>{{ movie.Director }}</span>
-                    </p>
-                    <p>
-                        Atores
-                        <span>{{ movie.Actors }}</span>
-                    </p>
-                    <p>
-                        Considerações
-                        <span>{{ movie.Awards }}</span>
-                    </p>
-                    <p>
-                        Produção
-                        <span>{{ movie.Production }}</span>
-                    </p>
-                </div> -->
             </div>
         </div>
     </div>
@@ -141,7 +121,8 @@ export default{
         }
     },
     components:{
-        Spinner
+        Spinner,
+        
     },
     methods:{
         async getMovieDetail() {
@@ -150,7 +131,6 @@ export default{
                 const {data} = await Movies(`i=${this.$route.params.id}`).get();
                 this.movie = data;
                 const responseTrailer = await Trailer(`${this.movie.Title}`).get();
-                console.log(responseTrailer);
                 this.trailerID = responseTrailer.data.items[0].id.videoId;
             } catch (error) {
                 console.log(error)
@@ -161,20 +141,9 @@ export default{
         addToMyList() {
             this.$store.dispatch("adicionarAlista", this.movie);
         },
-        // showToast() {
-        //     this.$toast.open({
-        //         message: "Adicionado em minha lista",
-        //         type: "sucess",
-        //         duration: 5000,
-        //         dismissible: true,
-        //         qeue: true,
-        //         position: "top-right"
-        //     })
-        // }
     },
     mounted(){
         this.getMovieDetail();
-        console.log(this.trailerID);
     }
 }
 </script>
@@ -182,7 +151,6 @@ export default{
 *{
     padding: 0;
     margin: 0;
-    color: #fff;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -191,11 +159,58 @@ export default{
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #fff;
     flex-direction: column;
 }
 
 .videoContainer{
+    display: flex;
+    flex-direction: column;
     align-items: flex-end;
+    margin-top: 10px;
+}
+.descriptionsContainer{
+    display: flex;
+    width: 100%;
+    max-width: 645px;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.containerBox{
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px;
+}
+.containerBox{
+    border: 1px solid red;
+    margin-top: 10px;
+}
+.button .addButon{
+    margin-top: 10px;
+    width: 100%;
+    border: 1px solid red;
+    border-radius: 10px;
+    font-size: 1.2em;
+    padding: 10px;
+    background: transparent;
+    color: #fff;
+
+}
+
+.button .addButon:hover{
+    background-color: red;
+    transition: 0.8s;
+}
+
+.trailerItens{
+    display: flex;
+    flex-direction: row;
 }
 
 </style>

@@ -21,7 +21,19 @@
                     </li>
                 </ul>
             </nav>
+            <div class="search-container">
+                <div class="inputContainer">
+                    <input type="text" placeholder="Genêro, Filme, Serie, Titulo"/>
+                </div>
+                <div class="icon">
+                    <font-awesome-icon :icon="['fa', 'magnifying-glass']" class="icon alt" />
+
+                </div>
+            </div>
             <div class="icons">
+                <div class="redDOt"></div>
+                <font-awesome-icon :icon="['fa', 'bell']" class="icon alt" />
+                <font-awesome-icon :icon="['fa', 'user-circle']" class="icon alt" />
             </div>
         </div>
     </div>
@@ -55,8 +67,10 @@ export default{
 }
 .page-container{
     width: 100%;
+    color: #fff;
 }
 .logoHeader{
+    align-items: center;
     width: 100px;
     height: auto;
 }
@@ -88,4 +102,38 @@ export default{
 li a:hover{
     color: #ccc
 }
+
+.search-container{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+.icon {
+    font-size: 1.5rem;
+}
+
+.inputContainer input{
+    width: 200px;
+    color: #fff;    
+    border: none;
+    background: transparent;
+    padding: 5px;
+    font-size: 15px;
+}
+.icons{
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    gap: 20px;
+}
+.redDOt{
+    position: absolute;
+    top: 11px;
+    right: 64px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: red;
+}
+
 </style>

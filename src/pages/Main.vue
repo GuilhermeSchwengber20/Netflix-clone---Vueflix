@@ -2,7 +2,11 @@
     <div>
         <NextReleases></NextReleases>
         <Movies :key="movie.id"  :type="movie.type" v-for="movie in movies" :description="movie.description"/>
+        <footer style="text-align:center">
+            <small style="color: #fff; ">Developed By <span><a href="https://github.com/GuilhermeSchwengber20" targer="_blank">Guilherme Schwenber</a></span> | 2022 ©</small>
+        </footer>
     </div>
+
 </template>
 <script>
 import Movies from "../components/Movies.vue"

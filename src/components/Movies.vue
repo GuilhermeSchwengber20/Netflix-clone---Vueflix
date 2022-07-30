@@ -13,9 +13,9 @@
             :navigationEnabled="true"
             :navigationClickTargetSize="9">
                 <Slide v-for="movie in movies" :key="movie.imdbID + Math.random()" id="movieDiv">
-                <div @click="details(movie.imdbID)">
-                    <img :src="movie.Poster" loading="lazy" id="imagemPosterSlider" @click="details(movie)">
-                </div>
+                    <div @click="details(movie.imdbID)">
+                        <img :src="movie.Poster" loading="lazy" id="imagemPosterSlider" @click="details(movie)">
+                    </div>
                 </Slide>
             </Carousel>
         </div>
@@ -47,7 +47,6 @@ export default{
 
     methods:{
         details(id){
-            console.log(id);
             this.$router.push({name: "DetailVue", params: {id: id.imdbID} });    
         },
         async getMovieDetail(){
@@ -55,7 +54,6 @@ export default{
             try {
                 const {data: {Search } } = await Movies(this.type).get();
                 this.movies = Search;
-                console.log();
             } catch (error) {
                 console.log(error)
             } finally{
@@ -126,13 +124,5 @@ export default{
     cursor: pointer;
 
 }
-.VueCarousel-navigation{
-    position: absolute !important;
-    left: 0;
 
-}
-.VueCarousel-navigation-button[data-v-453ad8cd]{
-  color: #000 !important;
-  outline: none !important;
-}
 </style>

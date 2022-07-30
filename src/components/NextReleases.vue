@@ -12,11 +12,13 @@
                 relembra a infância com ele.
             </p>
             <button class="button-play">
+                <font-awesome-icon :icon="['fa', 'circle-play']" class="icon alt"></font-awesome-icon>
                 <span>Assistir</span>
             </button>
             <button class="button-info">
+                <font-awesome-icon :icon="['fa', 'circle-info']" class="icon alt"></font-awesome-icon>
+
                 <span>Mais Informações</span>
-                <font-awesome-icons icon="HatWizard" scale="2"/>
             </button>
 
         </div>

@@ -14,10 +14,7 @@ export default new Vuex.Store({
 
     mutations:{
         addToMyList(state, movie){
-            console.log(state);
-            console.log(movie);
-            let existMovie = state.list.find(current => current ? current.imdbID : undefined == movie.imdbID);
-            console.log(existMovie);
+            let existMovie = state.list.find(current => current.imdbID == movie.imdbID);
             if(!existMovie){
                 state.list.push(movie);
             }
@@ -47,7 +44,6 @@ export default new Vuex.Store({
                 "movieWatched",
                 JSON.stringify(state.movieWatched)
             )
-            console.log(state.movieWatched);
         },
         removeWatched(state, movie){
             let WatchedRemove = state.movieWatched.indexOf(movie);
