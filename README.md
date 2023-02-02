@@ -13,7 +13,7 @@ https://github.com/GuilhermeSchwengber20/Netflix-clone---Vueflix.git
 2. Instale as dependências do projeto
 ```
 npm install
-
+```
 3. Inicie o servidor de desenvolvimento
 ```
 npm run serve
@@ -21,9 +21,9 @@ npm run serve
 
 ### ✅ Tecnologias Utilizadas
 
-* Java Script
-* HTMl
-* CSS
-* Vue.js
-* Vue Router
-* Vuex
+* ```Java Script```
+* ```HTMl```
+* ```CSS```
+* ```Vue.js```
+* ```Vue Router```
+* ```Vuex```
