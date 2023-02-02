@@ -13,7 +13,7 @@
             :navigationEnabled="true"
             :navigationClickTargetSize="9">
                 <Slide v-for="movie in movies" :key="movie.imdbID + Math.random()" id="movieDiv">
-                    <div @click="details(movie.imdbID)">
+                    <div @click.prevent="details(movie.imdbID)" >
                         <img :src="movie.Poster" loading="lazy" id="imagemPosterSlider" @click="details(movie)">
                     </div>
                 </Slide>

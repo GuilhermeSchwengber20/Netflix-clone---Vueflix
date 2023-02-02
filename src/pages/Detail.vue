@@ -7,26 +7,28 @@
                     <Spinner />
                 </div>
             </div>
-            <div class="movieHeader">
-                <div class="movieTitle">
-                    <h1>{{movie.Title}}</h1>
-                </div>
-                <div id="iconsContainer">
-                    <div id="starIcon">
-
+            <div class="contentMovie">
+                <div class="movieHeader">
+                    <div class="movieTitle">
+                        <h1>{{movie.Title}}</h1>
+                    </div>
+                    <div id="iconsContainer">
+                        <div id="starIcon">
+    
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="videoContainer">
-                <div clss="trailerItens" style="display: flex; flex-direction: row; gap: 5px; align-items: center;">
-                    <div>
-                        <font-awesome-icon :icon="['fa', 'ticket']" class="icon alt"></font-awesome-icon>
+                <div class="videoContainer">
+                    <div clss="trailerItens" style="display: flex; flex-direction: row; gap: 5px; align-items: center;">
+                        <div>
+                            <font-awesome-icon :icon="['fa', 'ticket']" class="icon alt"></font-awesome-icon>
+                        </div>
+                        <div>
+                            <p>Assista Ao Trailer</p>
+                        </div>
                     </div>
-                    <div>
-                        <p>Assista Ao Trailer</p>
-                    </div>
+                    <youtube :video-id="this.trailerID" ref="youtube"></youtube>
                 </div>
-                <youtube :video-id="this.trailerID" ref="youtube"></youtube>
             </div>
             <div class="descriptionsContainer">
                 <div class="containerMovie">
@@ -156,27 +158,29 @@ export default{
 
 .detail{
     width: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     color: #fff;
-    flex-direction: column;
+    gap: 20px;
+    flex-direction: row;
 }
-
-.videoContainer{
+.contentMovie{
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    margin-top: 10px;
+    justify-content: center;
+    height: 100%;
+    align-items: flex-start;
 }
+
 .descriptionsContainer{
     display: flex;
     width: 100%;
     max-width: 645px;
-    height: 100%;
+    height: 95vh;
     flex-direction: column;
     justify-content: center;
-    align-content: center;
 }
 
 .containerBox{
